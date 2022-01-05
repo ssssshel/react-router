@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
+
+import Navbar from './components/Navbar';
+import Welcome from './components/Welcome';
+import About from './components/About';
+import Contacto from './components/Contacto';
+import UserPages from './components/UserPages';
+import UserPage from './components/UserPage';
+import Notfound from './components/Notfound'
+import Dashboard from './components/Dashboard';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return(
+    <BrowserRouter>  
+      <Navbar /> {/*  NAVLINK */}
+      <Routes>
+        <Route path='/' element={<Welcome />}/> {/* LINK*/}
+        <Route path="/about" element={<About />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/usuarios" element={<Navigate to="/users" />} /> {/* REDIRECT*/}
+        <Route path='/users' element={<UserPages />}/> {/* REDIRECT*/}
+        <Route path='/users/:id' element={<UserPage />}/> {/* PARAMS */}
+
+        <Route path="/dashboard/*" element={<Dashboard />} > {/* SUBCOMPONENTE / NESTING & NAVIGATE*/}
+          <Route path="welcome" element={<p>Welcome!!!</p>} />  {/* OUTLET*/}
+          <Route path='goodbye' element={<p>Goodbye</p>}/>
+          
+        </Route>
+        <Route path="*" element={<Notfound />} />
+      </Routes>
+    </BrowserRouter>
+  )
+
 }
 
 export default App;
