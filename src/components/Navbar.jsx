@@ -14,6 +14,9 @@ const Navbar = () => {
         <li>
           <NavLink to="/contacto">Contacto</NavLink>
         </li>
+        <li>
+          <NavLink to="/api">Api</NavLink>
+        </li>
       </ul>
     </div>
    );

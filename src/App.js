@@ -14,6 +14,8 @@ import UserPages from './components/UserPages';
 import UserPage from './components/UserPage';
 import Notfound from './components/Notfound'
 import Dashboard from './components/Dashboard';
+import ApiCall from './components/ApiCall';
+import User from './components/User';
 
 function App() {
   return(
@@ -32,6 +34,8 @@ function App() {
           <Route path='goodbye' element={<p>Goodbye</p>}/>
           
         </Route>
+        <Route path="/api" element={<ApiCall />} /> {/* API CONSUME*/}
+        <Route path="/api/:id" element={<User />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </BrowserRouter>
